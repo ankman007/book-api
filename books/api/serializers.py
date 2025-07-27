@@ -12,6 +12,6 @@ class BookSerializer(serializers.Serializer):
     def update(self, instance, validated_data):
         instance.title = validated_data.get('title', instance.title)
         instance.author = validated_data.get('author', instance.author)
-        instance.published = validated_data.get('published', instance.published)
+        instance.published_date = validated_data.get('published_date', instance.published_date)
         instance.save()
         return instance
