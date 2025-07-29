@@ -2,17 +2,27 @@ from rest_framework.decorators import api_view
 from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.pagination import PageNumberPagination
 
 from .models import Book
 from .serializers import BookSerializer
+from .filters import BookFilter
 
 
 @api_view(['GET', 'POST'])
 def book_list(request):
     if request.method == 'GET':
         books = Book.objects.all()
-        serializer = BookSerializer(books, many=True)
-        return Response(serializer.data)
+        
+        filterset = BookFilter(request.GET, queryset=books)
+        if filterset.is_valid():
+            books = filterset.qs 
+            
+        paginator = PageNumberPagination()
+        paginated_books = paginator.paginate_queryset(books, request)
+        
+        serializer = BookSerializer(paginated_books, many=True)
+        return paginator.get_paginated_response(serializer.data)
     
     elif request.method == 'POST':
         serializer = BookSerializer(data=request.data)
