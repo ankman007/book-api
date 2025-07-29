@@ -1,6 +1,8 @@
 # Project Description
 A simple RESTful API built with Django REST Framework to manage a collection of books. It supports full CRUD operations along with filtering and pagination.
 
+🔗 [Medium Article: Building a Simple REST API with DRF](https://medium.com/@ankitpoudel_/build-a-simple-rest-api-with-django-rest-framework-a-step-by-step-guide-bc996201d248)
+
 ## Tech Stack
 - Django REST Framework
 - SQLite 
@@ -31,7 +33,6 @@ Handles GET (retrieve), PUT (update), PATCH (partial update), and DELETE (remove
   ]
 }
 ```
-
 
 ## Project Setup Guide
 1. cd into project directory
