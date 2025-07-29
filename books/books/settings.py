@@ -7,11 +7,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(os.path.join(BASE_DIR, '.env'))
 
 SECRET_KEY = os.getenv('SECRET_KEY')
-DEBUG = os.getenv('DEBUG', 'False') == 'True' 
-
-SECRET_KEY = 'django-insecure-8(4%wvvr059ij7n=a7693)pd6-=n0oy(^^$*5grblh0g79ah$s'
-
-DEBUG = True
+DEBUG = os.getenv('DEBUG')
 
 ALLOWED_HOSTS = []
 
@@ -59,7 +55,7 @@ WSGI_APPLICATION = 'books.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': os.getenv('DATABASE_URL'),
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
